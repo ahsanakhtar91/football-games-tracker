@@ -1,7 +1,7 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
-import { Fixture, League } from "src/types";
+import { formatDistance } from "date-fns";
+import { Fixture, League, STATUS_LONG } from "src/types";
+import FavStar from "../FavStar";
 
 interface ICardHeaderProps {
   fixture: Fixture;
@@ -11,17 +11,27 @@ interface ICardHeaderProps {
 const CardHeader = (props: ICardHeaderProps) => {
   const { fixture, league } = props;
 
-//   console.log(fixture, league);
+  const isMatchInProgress =
+    fixture?.status?.long === STATUS_LONG.FirstHalf ||
+    fixture?.status?.long === STATUS_LONG.Halftime ||
+    fixture?.status?.long === STATUS_LONG.SecondHalf;
 
   return (
     <div className="card-header">
-      <div className="status">
-        {!fixture?.status?.elapsed || fixture?.status?.elapsed === 90 ? (
-          <div className="status-green">{"TBD"}</div>
-        ) : (
+      <div
+        className="status"
+        title={new Date(fixture?.date).toLocaleString("gb-UK")}
+      >
+        {isMatchInProgress ? (
           <div className="status-red">
-            <span>.</span>
+            <span>{"."}</span>
             {"Live"}
+          </div>
+        ) : (
+          <div className="status-green">
+            {formatDistance(new Date(fixture?.date), new Date(), {
+              addSuffix: true,
+            })}
           </div>
         )}
       </div>
@@ -35,9 +45,7 @@ const CardHeader = (props: ICardHeaderProps) => {
         </div>
       </div>
 
-      <div className="fav">
-        <FontAwesomeIcon color="#ccc" icon={faStar} />
-      </div>
+      <FavStar fixture={fixture}></FavStar>
     </div>
   );
 };

@@ -1,5 +1,5 @@
 // General response from API
-export interface Fixtures {
+export interface GamesAPIResponse {
   get: string;
   parameters: Parameters;
   errors: any[];
@@ -8,13 +8,11 @@ export interface Fixtures {
   response: Response[];
 }
 
-// Not used
 export interface Paging {
   current: number;
   total: number;
 }
 
-// Not used
 export interface Parameters {
   date: string;
   timezone: Timezone;
@@ -40,26 +38,25 @@ export interface Fixture {
   referee: null | string; // Referee of the game
   timezone?: Timezone; // Used to adjust the date to the user's timezone
   date: string; // Used to calculate the date of the event
-  timestamp: number; // not used
-  periods: Periods; // not used
+  timestamp: number;
+  periods: Periods;
   venue: Venue; // Location of the game
   status: Status; // Status of the game - used to retrive the minute of the game
+  isFavourite?: boolean;
 }
 
-// Not used
 export interface Periods {
   first: number | null;
   second: number | null;
 }
 
 export interface Status {
-  long: string; // not used
-  short: string; // not used
+  long: string;
+  short: string;
   elapsed: number | null; // minute of the game
 }
 
-// Not used
-export const long = {
+export const STATUS_LONG = {
   FirstHalf: "First Half",
   Halftime: "Halftime",
   MatchCancelled: "Match Cancelled",
@@ -70,8 +67,7 @@ export const long = {
   TimeToBeDefined: "Time to be defined",
 };
 
-// Not used
-export const short = {
+export const STATUS_SHORT = {
   Aet: "AET",
   Canc: "CANC",
   Ft: "FT",
@@ -82,6 +78,12 @@ export const short = {
   Tbd: "TBD",
   The1H: "1H",
   The2H: "2H",
+};
+
+export const FILTER_OPTION = {
+  SHOW_ALL: "SHOW_ALL",
+  FAVOURITES: "FAVOURITES",
+  GAMES_TODAY: "GAMES_TODAY",
 };
 
 // Information about the location of the game

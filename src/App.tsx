@@ -3,10 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { API_ENDPOINTS, authorizationHeader } from "./config/index";
 import { FETCH_FOOTBALL_GAMES } from "./redux/actions/types";
 import { commonThunk } from "./redux/thunk";
-import { GameDetail } from "./types";
+import { FILTER_OPTION, GameDetail } from "./types";
 import Link from "./components/Link";
 import Card from "./components/Card";
 import "./scss/main.scss";
+
+interface IAppState {
+  data: any;
+  loadedItems: number;
+  filterOption: string;
+}
 
 const App = () => {
   const dispatch = useDispatch();
@@ -15,12 +21,13 @@ const App = () => {
     (state: any) => state?.gamesReducer?.footballGamesContent
   );
 
-  const [state, setState] = useState<any>({
+  const [state, setState] = useState<IAppState>({
     data: null,
+    loadedItems: 30,
+    filterOption: FILTER_OPTION.SHOW_ALL,
   });
 
-  const { response, parameters, paging } = state?.data ?? {};
-  console.log(state); // ahsan
+  const { response } = state?.data ?? {};
 
   useEffect(() => {
     dispatch(
@@ -46,14 +53,14 @@ const App = () => {
     }
   }, [footballGamesContent]);
 
-  console.log(state?.data); // ahsan
-
   return (
     <div className="football-games-tracker">
       <ul className="cards-list">
-        {response?.map((cardData: GameDetail, index: number) => (
-          <Card cardData={cardData} index={index} />
-        ))}
+        {(response ?? [])
+          ?.slice(0, state?.loadedItems)
+          ?.map((cardData: GameDetail, index: number) => (
+            <Card cardData={cardData} index={index} />
+          ))}
       </ul>
 
       <h3 className="copyrights">

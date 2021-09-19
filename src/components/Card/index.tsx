@@ -2,6 +2,7 @@ import React from "react";
 import { GameDetail } from "src/types";
 import CardHeader from "../CardHeader";
 import CardBody from "../CardBody";
+import CardFooter from "../CardFooter";
 
 interface ICardProps {
   cardData: GameDetail;
@@ -10,8 +11,6 @@ interface ICardProps {
 
 const Card = (props: ICardProps) => {
   const { cardData, index } = props;
-
-  console.log(cardData);
 
   return (
     <li key={index} className="card-container">
@@ -23,6 +22,7 @@ const Card = (props: ICardProps) => {
           fixture={cardData?.fixture}
           goals={cardData?.goals}
         />
+        <CardFooter fixture={cardData?.fixture} />
       </div>
     </li>
   );

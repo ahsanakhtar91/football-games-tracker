@@ -39,7 +39,7 @@ body {
                         .status-red {
                             padding: 5px;
                             background-color: rgb(255, 87, 87, 0.3);
-                            color: rgb(255, 87, 87);
+                            color: #d43626;
                             border-radius: 6px;
                             span {
                                 margin-right: 3px;
@@ -63,12 +63,14 @@ body {
 
                         .image {
                             img {
+                                top: 3px;
+                                position: relative;
                                 width: 20px;
                                 height: 20px;
+                                background-size: contain;
                             }
                         }
                         .label {
-                            margin-top: -2px;
                             margin-left: 7px;
                             max-width: 20rem;
                             overflow: hidden;
@@ -78,7 +80,14 @@ body {
                         }
                     }
 
-                    .fav {
+                    .fav-star {
+                        cursor: pointer;
+                        &:hover {
+                            opacity: 0.8;
+                        }
+                        &:active {
+                            opacity: 1;
+                        }
                     }
                 }
 
@@ -93,6 +102,7 @@ body {
                         display: flex;
                         flex-direction: column;
                         align-items: center;
+                        text-align: center;
 
                         .logo {
                             border: 10px solid rgb(231, 217, 217);
@@ -107,14 +117,27 @@ body {
                                 border-radius: 70px;
                             }
                         }
-                        
+
                         .name {
                             margin-top: 10px;
                             font-weight: bold;
                         }
                     }
                     .score-section {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+
                         .date-time {
+                            font-weight: bold;
+                            font-size: 0.8rem;
+
+                            .date {
+                                color: #aaa;
+                            }
+                            .time {
+                                color: #000;
+                            }
                         }
                         .score {
                             display: flex;
@@ -123,16 +146,60 @@ body {
                             .score-home,
                             .score-away {
                                 color: #7359be;
-                                font-weight: bold;
+                                font-size: 3.2rem;
                             }
                             span {
-                                margin-left: 5px;
-                                margin-right: 5px;
+                                font-size: 3.2rem;
+                                margin: -3px 5px 5px 5px;
                             }
 
                             .score-zero {
                                 color: #000 !important;
                             }
+                        }
+
+                        .time-elapsed {
+                            font-weight: bold;
+                            color: orange;
+                        }
+
+                        .referee {
+                            width: 8.7rem;
+                            height: 60px;
+
+                            .label {
+                                font-size: 0.9rem;
+                                color: #aaa;
+                            }
+                            .name {
+                                font-size: 0.9rem;
+                                font-weight: bold;
+                                color: #000;
+                            }
+                        }
+                    }
+                }
+
+                .card-footer {
+                    .venue {
+                        display: flex;
+                        flex-direction: row;
+                        background-color: #7359be;
+                        width: 65%;
+                        position: relative;
+                        top: 37px;
+                        left: 21%;
+                        padding: 8px;
+                        border-radius: 10px;
+                        justify-content: center;
+
+                        .icon {
+                        }
+                        .label {
+                            margin-left: 9px;
+                            color: #fff;
+                            font-size: 0.9rem;
+                            font-weight: 500;
                         }
                     }
                 }
@@ -166,13 +233,6 @@ body {
                 max-height: auto;
             }
         }
-
-        // @media (min-width: 1900px) {
-        //     .card-container {
-        //         width: 700px;
-        //         max-height: auto;
-        //     }
-        // }
     }
 
     *,
