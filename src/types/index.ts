@@ -26,7 +26,7 @@ export enum Timezone {
 }
 
 // Game definition information
-export interface Response {
+export interface GameDetail {
   fixture: Fixture;
   league: League;
   teams: Teams;
