@@ -27,7 +27,6 @@ const FiltersContainer = () => {
         {Object.keys(FILTER_OPTIONS).map((filterOption, index) => (
           <button
             key={index}
-            type="button"
             className={`btn-filter-option ${
               index === enabledIndex ? "enabled" : ""
             }`}

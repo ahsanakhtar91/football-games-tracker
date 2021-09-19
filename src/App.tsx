@@ -34,6 +34,16 @@ const App = () => {
 
   const response: Array<GameDetail> = state?.data?.response ?? [];
 
+  const lazyLoadMoreData = () => {
+    setState((prevState) => ({
+      ...prevState,
+      loadedItems:
+        prevState.loadedItems + 30 < response.length
+          ? prevState.loadedItems + 30
+          : response.length,
+    }));
+  };
+
   useEffect(() => {
     dispatch(
       commonThunk({
@@ -77,6 +87,21 @@ const App = () => {
             />
           ))}
       </ul>
+
+      <div className="load-more">
+        <div className="items-count">
+          {"Showing "}
+          <span>{state?.loadedItems}</span>
+          {" out of total "}
+          <span>{response?.length}</span>
+          {" games."}
+        </div>
+        {state?.loadedItems < response.length && (
+          <button className="btn-load-more" onClick={() => lazyLoadMoreData()}>
+            {"Load More"}
+          </button>
+        )}
+      </div>
 
       <MadeBy />
     </div>
