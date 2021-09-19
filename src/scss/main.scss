@@ -1,0 +1,145 @@
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+        "Droid Sans", "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.football-games-tracker {
+    // max-width: 1300px;
+    margin: 0 auto;
+
+    .cards-list {
+        display: flex;
+        flex-wrap: wrap;
+        list-style: none;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+
+        .card-container {
+            display: flex;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 30px;
+            margin: 10px;
+            background: #fcfcfc;
+
+            .card {
+                width: 100%;
+
+                .card-header {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    .status {
+                        .status-red {
+                            padding: 5px;
+                            background-color: rgb(255, 87, 87, 0.3);
+                            color: rgb(255, 87, 87);
+                            border-radius: 6px;
+                            span {
+                                margin-right: 3px;
+                                top: -5px;
+                                position: relative;
+                            }
+                        }
+
+                        .status-green {
+                            padding: 5px;
+                            background-color: lightgreen;
+                            color: #000;
+                            border-radius: 6px;
+                        }
+                    }
+
+                    .title {
+                        display: flex;
+                        flex-direction: row;
+                        margin-left: -10px;
+
+                        .image {
+                            img {
+                                width: 20px;
+                                height: 20px;
+                            }
+                        }
+                        .label {
+                            margin-left: 3px;
+                            max-width: 20rem;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            height: 23px;
+                        }
+                    }
+
+                    .fav {
+                    }
+                }
+            }
+        }
+
+        @media (max-width: 790px) {
+            .card-container {
+                width: 100%;
+                max-height: 300px;
+            }
+        }
+
+        @media (min-width: 790px) {
+            .card-container {
+                width: 100%;
+                max-height: 300px;
+            }
+        }
+
+        @media (min-width: 950px) {
+            .card-container {
+                width: 45%;
+                max-height: auto;
+            }
+        }
+
+        @media (min-width: 1300px) {
+            .card-container {
+                width: 30%;
+                max-height: auto;
+            }
+        }
+
+        // @media (min-width: 1900px) {
+        //     .card-container {
+        //         width: 700px;
+        //         max-height: auto;
+        //     }
+        // }
+    }
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.copyrights {
+    font-weight: 400;
+    font-size: 13px;
+    margin-top: 35px;
+    text-align: center;
+}
+.copyrights-links {
+    font-weight: 400;
+    font-size: 13px;
+    margin-top: -8px;
+    text-align: center;
+}
