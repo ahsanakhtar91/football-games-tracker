@@ -14,7 +14,7 @@ A responsive web app with a nice looking UI, built on mobile-first approach (sui
 - All the games marked as **Favourites**, are stored and maintained in **localStorage** after marking as Favourite (so that the data persists even after reloading).
 - Implemented **Filters** upon the results of the football games on UI, based upon **3** different **filtering options**, which are: **Show All**, **Favourites** and **Live Games**.
 - Storing the full games list inside the **Redux Store** after fetching from the API (to avoid **props drilling** and for easy **sharing** between components at different levels).
-- **Lazy Loading** functionality implemented to avoid performance issues (**30** games loaded initially, and then the user can keep pressing **Load More** button provied at the bottom of the results, until the available **total count** limit is reached and all the results are viewed).
+- **Lazy Loading** functionality implemented to avoid performance issues (**30** games loaded initially, and then the user can keep pressing **Load More** button provided at the bottom of the results, until the available **total count** limit is reached and all the results are successfully viewed).
 
 <code>**Live Demo**: https://football-games.netlify.app</code>
 
