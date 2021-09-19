@@ -15,7 +15,10 @@ const Card = (props: ICardProps) => {
   return (
     <li key={index} className="card-container">
       <div className="card">
-        <CardHeader fixture={cardData?.fixture} league={cardData?.league} />
+        <CardHeader
+          fixture={cardData?.fixture}
+          league={cardData?.league}
+        />
         <hr color="#ccc" />
         <CardBody
           teams={cardData?.teams}

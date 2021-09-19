@@ -42,7 +42,7 @@ export interface Fixture {
   periods: Periods;
   venue: Venue; // Location of the game
   status: Status; // Status of the game - used to retrive the minute of the game
-  isFavourite?: boolean;
+  isFavourite?: boolean; // is the fixture marked as favourite or
 }
 
 export interface Periods {
@@ -80,10 +80,10 @@ export const STATUS_SHORT = {
   The2H: "2H",
 };
 
-export const FILTER_OPTION = {
+export const FILTER_OPTIONS = {
   SHOW_ALL: "SHOW_ALL",
   FAVOURITES: "FAVOURITES",
-  GAMES_TODAY: "GAMES_TODAY",
+  LIVE_GAMES: "LIVE_GAMES",
 };
 
 // Information about the location of the game

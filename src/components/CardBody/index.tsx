@@ -34,6 +34,7 @@ const CardBody = (props: ICardBodyProps) => {
         </div>
         <div className="name">{teams?.home?.name}</div>
       </div>
+
       <div className="score-section">
         <div className="date-time">
           <span className="date">
@@ -57,6 +58,7 @@ const CardBody = (props: ICardBodyProps) => {
               : date?.getMinutes()
           }`}</span>
         </div>
+
         <div className="score">
           {!goals?.home && !goals?.away ? (
             <></>
@@ -72,6 +74,7 @@ const CardBody = (props: ICardBodyProps) => {
             </>
           )}
         </div>
+
         <div className="time-elapsed">
           {fixture?.status?.elapsed ? (
             <>
@@ -82,11 +85,13 @@ const CardBody = (props: ICardBodyProps) => {
             <></>
           )}
         </div>
+
         <div className="referee">
           <div className="label">{fixture?.referee ? "Referee: " : ""}</div>
           <div className="name">{fixture?.referee ? fixture?.referee : ""}</div>
         </div>
       </div>
+
       <div className="team-away">
         <div className="logo">
           <img alt="Team Logo" src={teams?.away?.logo} />

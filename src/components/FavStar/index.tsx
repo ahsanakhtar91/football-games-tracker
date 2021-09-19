@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  getFavouritesFromLocalStorage,
+  setFavouritesInLocalStorage,
+} from "src/utils";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
-import { Fixture } from "src/types";
+import { FILTER_OPTIONS, Fixture } from "src/types";
+import { useSelector } from "react-redux";
 
 interface IFavStarProps {
   fixture: Fixture;
@@ -10,45 +15,51 @@ interface IFavStarProps {
 const FavStar = (props: IFavStarProps) => {
   const { fixture } = props;
 
+  const filterApplied = useSelector(
+    (state: any) => state?.gamesReducer?.filterApplied
+  );
+
   const [isFavourite, setIsFavourite] = useState<boolean>(false);
 
   useEffect(() => {
-    const favouriteFixtureIDs =
-      localStorage.getItem("favourite_fixture_ids") ?? "[]";
-    const favouriteFixtureIDsArr: Array<number> =
-      JSON.parse(favouriteFixtureIDs);
+    const favouriteFixtureIDs = getFavouritesFromLocalStorage();
 
-    if (favouriteFixtureIDsArr.indexOf(fixture?.id) >= 0) {
+    if (favouriteFixtureIDs.indexOf(fixture?.id) !== -1) {
       setIsFavourite(true);
     }
   }, []);
 
-  const onMarkedAsFavourite = (fixture: Fixture) => {
+  const onMarkAsFavourite = (fixture: Fixture) => {
     setIsFavourite(!isFavourite);
     updateLocalStorage(fixture);
   };
 
   const updateLocalStorage = (fixture: Fixture) => {
-    const favouriteFixtureIDs =
-      localStorage.getItem("favourite_fixture_ids") ?? "[]";
-    const favouriteFixtureIDsArr: Array<number> =
-      JSON.parse(favouriteFixtureIDs);
+    const favouriteFixtureIDs = getFavouritesFromLocalStorage();
 
-    const existingIndex = favouriteFixtureIDsArr.indexOf(fixture?.id);
-    if (existingIndex === -1) {
-      favouriteFixtureIDsArr.push(fixture?.id);
+    const existingIndex = favouriteFixtureIDs.indexOf(fixture?.id);
+
+    if (existingIndex === -1 && !isFavourite) {
+      favouriteFixtureIDs.push(fixture?.id);
     } else {
-      favouriteFixtureIDsArr.splice(existingIndex, 1);
+      favouriteFixtureIDs.splice(existingIndex, 1);
     }
 
-    localStorage.setItem(
-      "favourite_fixture_ids",
-      JSON.stringify(favouriteFixtureIDsArr)
-    );
+    setFavouritesInLocalStorage(favouriteFixtureIDs);
   };
 
   return (
-    <div className="fav-star" onClick={() => onMarkedAsFavourite(fixture)}>
+    <div
+      key={new Date().getTime()}
+      className={`fav-star ${
+        filterApplied === FILTER_OPTIONS.FAVOURITES ? "disabled" : ""
+      }`}
+      onClick={
+        filterApplied === FILTER_OPTIONS.FAVOURITES
+          ? () => {}
+          : () => onMarkAsFavourite(fixture)
+      }
+    >
       <FontAwesomeIcon color={isFavourite ? "#7359be" : "#bbb"} icon={faStar} />
     </div>
   );

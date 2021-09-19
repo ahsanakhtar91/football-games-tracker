@@ -1,8 +1,8 @@
-import { FETCH_FOOTBALL_GAMES } from "./types";
+import { APPLY_FILTER } from "./types";
 
-export function action(data: any) {
+export function applyFilter(filter: string | null) {
   return {
-    type: "",
-    payload: data,
+    type: APPLY_FILTER,
+    payload: filter,
   };
 }

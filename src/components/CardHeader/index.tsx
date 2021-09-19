@@ -2,6 +2,7 @@ import React from "react";
 import { formatDistance } from "date-fns";
 import { Fixture, League, STATUS_LONG } from "src/types";
 import FavStar from "../FavStar";
+import { getIsMatchLive } from "src/utils";
 
 interface ICardHeaderProps {
   fixture: Fixture;
@@ -11,10 +12,7 @@ interface ICardHeaderProps {
 const CardHeader = (props: ICardHeaderProps) => {
   const { fixture, league } = props;
 
-  const isMatchInProgress =
-    fixture?.status?.long === STATUS_LONG.FirstHalf ||
-    fixture?.status?.long === STATUS_LONG.Halftime ||
-    fixture?.status?.long === STATUS_LONG.SecondHalf;
+  const isMatchLive = getIsMatchLive(fixture);
 
   return (
     <div className="card-header">
@@ -22,7 +20,7 @@ const CardHeader = (props: ICardHeaderProps) => {
         className="status"
         title={new Date(fixture?.date).toLocaleString("gb-UK")}
       >
-        {isMatchInProgress ? (
+        {isMatchLive ? (
           <div className="status-red">
             <span>{"."}</span>
             {"Live"}
